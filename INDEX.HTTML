@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rifa Kit Zaad</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: #333;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .app-container {
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 500px;
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(to right, #2E7D32, #4CAF50);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .header h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        }
+        
+        .product-image {
+            width: 100%;
+            max-height: 200px;
+            object-fit: contain;
+            margin: 15px 0;
+            border-radius: 10px;
+            background-color: #f8f8f8;
+            padding: 10px;
+        }
+        
+        .info-section {
+            padding: 20px;
+            background-color: #f8f8f8;
+            border-bottom: 2px solid #ddd;
+        }
+        
+        .info-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding: 8px 0;
+            border-bottom: 1px dashed #ccc;
+        }
+        
+        .info-label {
+            font-weight: bold;
+            color: #2E7D32;
+        }
+        
+        .pix-info {
+            background-color: #E8F5E9;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 15px;
+            text-align: center;
+        }
+        
+        .pix-key {
+            font-weight: bold;
+            font-size: 18px;
+            color: #2E7D32;
+            margin: 10px 0;
+            word-break: break-all;
+        }
+        
+        .numbers-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+            padding: 20px;
+            background-color: white;
+        }
+        
+        .number {
+            border: 2px solid #4CAF50;
+            border-radius: 10px;
+            padding: 10px 5px;
+            text-align: center;
+            position: relative;
+            min-height: 70px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .number-id {
+            font-weight: bold;
+            font-size: 16px;
+            color: #2E7D32;
+            margin-bottom: 5px;
+        }
+        
+        .sold {
+            background-color: #E8F5E9;
+        }
+        
+        .paid::after {
+            content: "💰";
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            font-size: 14px;
+        }
+        
+        .buyer-name {
+            font-size: 12px;
+            word-break: break-word;
+        }
+        
+        .footer {
+            padding: 15px;
+            text-align: center;
+            background-color: #2E7D32;
+            color: white;
+        }
+        
+        .action-buttons {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+            padding: 0 20px 20px;
+        }
+        
+        .btn {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+        
+        .btn-whatsapp {
+            background-color: #25D366;
+            color: white;
+        }
+        
+        .btn-copy {
+            background-color: #2196F3;
+            color: white;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        @media (max-width: 500px) {
+            .numbers-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+        
+        /* Animações */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .app-container {
+            animation: fadeIn 0.5s ease-out;
+        }
+        
+        .number {
+            transition: all 0.3s;
+        }
+        
+        .number:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <div class="header">
+            <h1>RIFA KIT ZAAD</h1>
+            <img src="https://via.placeholder.com/350x150/4CAF50/FFFFFF?text=Kit+Zaad" alt="Kit Zaad" class="product-image">
+        </div>
+        
+        <div class="info-section">
+            <div class="info-item">
+                <span class="info-label">1 número:</span>
+                <span>R$ 4,00</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">5 números:</span>
+                <span>R$ 15,00</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Sorteio:</span>
+                <span>30/09 (Loteria Federal)</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Pagamentos até:</span>
+                <span>25/09</span>
+            </div>
+            
+            <div class="pix-info">
+                <div class="info-label">Chave PIX:</div>
+                <div class="pix-key">12556909765</div>
+            </div>
+        </div>
+        
+        <div class="numbers-grid">
+            <!-- Os números serão preenchidos via JavaScript -->
+        </div>
+        
+        <div class="action-buttons">
+            <button class="btn btn-whatsapp" onclick="shareOnWhatsApp()">
+                <i class="fab fa-whatsapp"></i> Compartilhar
+            </button>
+            <button class="btn btn-copy" onclick="copyPixKey()">
+                <i class="far fa-copy"></i> Copiar PIX
+            </button>
+        </div>
+        
+        <div class="footer">
+            <p>Obrigado por participar! Boa sorte!</p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const numbersGrid = document.querySelector('.numbers-grid');
+            const soldNumbers = {
+                3: {name: 'Paulão', paid: true},
+                4: {name: 'sandra', paid: true},
+                7: {name: 'Paulão', paid: true},
+                8: {name: 'sandra', paid: true},
+                12: {name: 'Rafael', paid: false},
+                13: {name: 'Paulão', paid: true},
+                14: {name: 'sandra', paid: true},
+                15: {name: 'Rafael', paid: false},
+                16: {name: 'Rafael', paid: false},
+                20: {name: 'Sandra', paid: true},
+                22: {name: 'Paulão', paid: true},
+                23: {name: 'Paulão', paid: true},
+                33: {name: 'Sandra', paid: true},
+                71: {name: 'glaucio', paid: true},
+                72: {name: 'glaucio', paid: true},
+                73: {name: 'glaucio', paid: true},
+                74: {name: 'glaucio', paid: true},
+                75: {name: 'glaucio', paid: true},
+                89: {name: 'Paulão', paid: true},
+                99: {name: 'Paulão', paid: true}
+            };
+            
+            // Criar os 100 números
+            for (let i = 1; i <= 100; i++) {
+                const numberElement = document.createElement('div');
+                numberElement.classList.add('number');
+                
+                const numberId = document.createElement('div');
+                numberId.classList.add('number-id');
+                numberId.textContent = i;
+                numberElement.appendChild(numberId);
+                
+                // Verificar se o número foi vendido
+                if (soldNumbers[i]) {
+                    numberElement.classList.add('sold');
+                    if (soldNumbers[i].paid) {
+                        numberElement.classList.add('paid');
+                    }
+                    
+                    const buyerName = document.createElement('div');
+                    buyerName.classList.add('buyer-name');
+                    buyerName.textContent = soldNumbers[i].name;
+                    numberElement.appendChild(buyerName);
+                }
+                
+                numbersGrid.appendChild(numberElement);
+            }
+        });
+        
+        function shareOnWhatsApp() {
+            const text = "Participe da Rifa do Kit Zaad! 1 número por R$ 4,00 ou 5 números por R$ 15,00. Sorteio pela Loteria Federal no dia 30/09. Chave PIX: 12556909765";
+            const url = https://api.whatsapp.com/send?text=${encodeURIComponent(text)};
+            window.open(url, '_blank');
+        }
+        
+        function copyPixKey() {
+            navigator.clipboard.writeText("12556909765")
+                .then(() => {
+                    alert("Chave PIX copiada para a área de transferência!");
+                })
+                .catch(err => {
+                    console.error('Erro ao copiar a chave PIX: ', err);
+                });
+        }
+    </script>
+</body>
+</html>
